@@ -1,0 +1,2 @@
+# SistemaGestionAcademica
+PROYECTO DE UCI 
