@@ -250,6 +250,10 @@ public class GestionProfesores {
         }
         return null;
     }
+    
+       public static List<Profesor> getProfesores() {
+       return profesores;
+   }
 
     private static String generarIdConsecutivo() {
         int id = 1;

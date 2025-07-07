@@ -3,6 +3,7 @@ package modelos;
 import java.io.Serializable;
 
 public class Materia implements Serializable {
+   private static final long serialVersionUID = 1L;
     private String clave;
     private String seriacion;
     private String nombre;
@@ -15,10 +16,16 @@ public class Materia implements Serializable {
         this.cuatrimestre = cuatrimestre;
     }
 
+    // Getters
     public String getClave() { return clave; }
     public String getSeriacion() { return seriacion; }
     public String getNombre() { return nombre; }
     public String getCuatrimestre() { return cuatrimestre; }
+
+    // 🔧 Setter que faltaba
+    public void setCuatrimestre(String cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
+    }
 
     @Override
     public String toString() {
