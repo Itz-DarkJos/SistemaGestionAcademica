@@ -1,34 +1,50 @@
 package utilidades;
 
-import java.io.*;
-import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 public class Login {
-    private static final String USUARIO_VALIDO = "AdminUci";
-    private static final String PASS_VALIDO = "admin123";
-    private static int intentos = 0;
-    private static final int MAX_INTENTOS = 3;
-    
     public static boolean autenticar() {
-        while (intentos < MAX_INTENTOS) {
-            String usuario = JOptionPane.showInputDialog(null, "Ingrese su usuario:", "Login", JOptionPane.QUESTION_MESSAGE);
-            String password = JOptionPane.showInputDialog(null, "Ingrese su contraseña:", "Login", JOptionPane.QUESTION_MESSAGE);
-            
-            if (usuario == null || password == null) {
-                System.exit(0);
-            }
-            
-            if (usuario.equals(USUARIO_VALIDO) && password.equals(PASS_VALIDO)) {
+        JTextField userField = new JTextField();
+        JPasswordField passField = new JPasswordField();
+
+        Object[] message = {
+                "Usuario:", userField,
+                "Contraseña:", passField
+        };
+
+        // Configurar colores y fuente
+        UIManager.put("Panel.background", new Color(245, 245, 245));
+        UIManager.put("OptionPane.background", new Color(245, 245, 245));
+        UIManager.put("Button.background", new Color(0, 123, 255)); // azul
+        UIManager.put("Button.foreground", Color.WHITE);
+        UIManager.put("Button.font", new Font("Segoe UI", Font.BOLD, 14));
+        UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 14));
+
+        ImageIcon icon = null;
+
+        int option = JOptionPane.showConfirmDialog(
+                null,
+                message,
+                "Iniciar Sesión",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                icon
+        );
+
+        if (option == JOptionPane.OK_OPTION) {
+            String usuario = userField.getText().trim();
+            String contrasena = new String(passField.getPassword());
+
+            if (usuario.equals("admin") && contrasena.equals("123")) {
+                JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
-                intentos++;
-                int restantes = MAX_INTENTOS - intentos;
-                JOptionPane.showMessageDialog(null, 
-                    "Usuario o contraseña incorrectos.\nIntentos restantes: " + restantes, 
-                    "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
             }
+        } else {
+            return false; // Cancelado
         }
-        return false;
     }
 }

@@ -1,6 +1,9 @@
 package modelos;
+import java.io.Serializable;
 
-public class Profesor {
+public class Profesor implements Serializable {
+
+
     private String id;
     private String nombre;
     private String especialidad;

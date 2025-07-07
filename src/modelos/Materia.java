@@ -1,23 +1,27 @@
 package modelos;
 
-public class Materia {
-    private String clave;
-    private String nombre;
-    private int creditos;
+import java.io.Serializable;
 
-    public Materia(String clave, String nombre, int creditos) {
+public class Materia implements Serializable {
+    private String clave;
+    private String seriacion;
+    private String nombre;
+    private String cuatrimestre;
+
+    public Materia(String clave, String seriacion, String nombre, String cuatrimestre) {
         this.clave = clave;
+        this.seriacion = seriacion;
         this.nombre = nombre;
-        this.creditos = creditos;
+        this.cuatrimestre = cuatrimestre;
     }
 
-    // Getters y Setters
     public String getClave() { return clave; }
+    public String getSeriacion() { return seriacion; }
     public String getNombre() { return nombre; }
-    public int getCreditos() { return creditos; }
+    public String getCuatrimestre() { return cuatrimestre; }
 
     @Override
     public String toString() {
-        return "Clave: " + clave + "\nNombre: " + nombre + "\nCréditos: " + creditos;
+        return clave + " - " + nombre + " (Seriación: " + seriacion + ") - " + cuatrimestre;
     }
 }
