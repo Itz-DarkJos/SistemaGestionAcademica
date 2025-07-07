@@ -17,22 +17,21 @@ public class GestionMaterias {
     public static void menuMaterias() {
         cargarMaterias();
 
-        String[] opciones = {"Capturar Materia (Plan B)", "Consultar Materias", "Regresar"};
-        int opcion;
-        do {
-            opcion = JOptionPane.showOptionDialog(null, "Gestión de Materias\nSeleccione una opción:",
-                    "Materias", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, opciones, opciones[0]);
+       String[] opciones = {"Capturar Materia (Plan B)", "Consultar Materias", "Regresar"};
+int opcion;
+do {
+    opcion = JOptionPane.showOptionDialog(null, "Gestión de Materias\nSeleccione una opción:",
+            "Materias", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+            null, opciones, opciones[0]);
 
-            switch (opcion) {
-                case 0 -> capturarMateriaPlanB();
-                case 1 -> consultarMaterias();
-                case 2 -> borrarMateriaPlanB();
-                case 3 -> guardarMaterias();
-                default -> {
-                }
-            }
-        } while (opcion != 3);
+    switch (opcion) {
+        case 0 -> capturarMateriaPlanB();
+        case 1 -> consultarMaterias();
+        case 2 -> guardarMaterias(); // Regresar
+        default -> {}
+    }
+} while (opcion != 2);
+
     }
 
     private static void capturarMateriaPlanB() {
