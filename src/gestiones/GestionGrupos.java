@@ -16,6 +16,7 @@ public class GestionGrupos {
     private static final String ARCHIVO_MATERIAS_PLAN_B = "data/materias_plan_b.txt";
 
     private static List<Grupo> grupos = new ArrayList<>();
+    
 
     public static void menuGrupos() {
         cargarGrupos();
@@ -140,18 +141,17 @@ public class GestionGrupos {
 
     private static void asignarMateriaPlanB() {
         // Filtrar grupos Plan B
-        List<Grupo> gruposPlanB = grupos.stream()
-                .filter(g -> !g.esPlanA())
-                .collect(Collectors.toList());
-
-        if (gruposPlanB.isEmpty()) {
-            JOptionPane.showMessageDialog(null,
-                    "No hay grupos Plan B para asignar materia.",
-                    "Información",
-                    JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
+       List<Grupo> gruposPlanB = grupos.stream()
+            .filter(g -> !g.esPlanA())
+            .filter(g -> {
+                try {
+                    int cuatri = Integer.parseInt(g.getIdGrupo().substring(0, 1));
+                    return cuatri >= 7 && cuatri <= 9;
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+            })
+            .collect(Collectors.toList());
         String[] opcionesGrupos = gruposPlanB.stream()
                 .map(Grupo::getIdGrupo)
                 .toArray(String[]::new);
@@ -433,19 +433,21 @@ public class GestionGrupos {
                   .findFirst()
                   .orElse(null);
    }
-    public static String normalizarCuatrimestre(String nombre) {
-    return switch (nombre.toUpperCase()) {
-        case "PRIMER CUATRIMESTRE" -> "1";
-        case "SEGUNDO CUATRIMESTRE" -> "2";
-        case "TERCER CUATRIMESTRE" -> "3";
-        case "CUARTO CUATRIMESTRE" -> "4";
-        case "QUINTO CUATRIMESTRE" -> "5";
-        case "SEXTO CUATRIMESTRE" -> "6";
-        case "SÉPTIMO CUATRIMESTRE", "SEPTIMO CUATRIMESTRE" -> "7";
-        case "OCTAVO CUATRIMESTRE" -> "8";
-        case "NOVENO CUATRIMESTRE" -> "9";
-        default -> nombre;
-    };
-}
-
+       public static String normalizarCuatrimestre(String nombre) {
+       return switch (nombre.toUpperCase()) {
+           case "PRIMER CUATRIMESTRE" -> "1";
+           case "SEGUNDO CUATRIMESTRE" -> "2";
+           case "TERCER CUATRIMESTRE" -> "3";
+           case "CUARTO CUATRIMESTRE" -> "4";
+           case "QUINTO CUATRIMESTRE" -> "5";
+           case "SEXTO CUATRIMESTRE" -> "6";
+           case "SÉPTIMO CUATRIMESTRE", "SEPTIMO CUATRIMESTRE" -> "7";
+           case "OCTAVO CUATRIMESTRE" -> "8";
+           case "NOVENO CUATRIMESTRE" -> "9";
+           default -> nombre;
+       };
+   }
+   public static List<Grupo> getGrupos() {
+      return grupos;
+   }
 }

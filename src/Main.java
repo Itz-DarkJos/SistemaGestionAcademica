@@ -1,8 +1,9 @@
-import utilidades.Login;
-import gestiones.GestionProfesores;
-import gestiones.GestionMaterias;
-import gestiones.GestionGrupos;
-import javax.swing.JOptionPane;
+import utilidades.Login; // Import the Login class
+import javax.swing.JOptionPane; // Import the JOptionPane class
+import gestiones.GestionProfesores; // Import GestionProfesores
+import gestiones.GestionMaterias;   // Import GestionMaterias
+import gestiones.GestionGrupos;     // Import GestionGrupos
+import gestiones.GestionAlumnos;    // Import GestionAlumnos
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class Main {
     }
 
     private static void mostrarMenuPrincipal() {
-        String[] opciones = {"Profesores", "Materias", "Grupos", "Salir"};
+        String[] opciones = {"Profesores", "Materias", "Grupos", "Alumnos", "Salir"};
         int opcion;
         do {
             opcion = JOptionPane.showOptionDialog(null, "Sistema de Gestión Académica\nSeleccione una opción:", 
@@ -33,12 +34,15 @@ public class Main {
                     GestionGrupos.menuGrupos();
                     break;
                 case 3:
+                    GestionAlumnos.menuAlumnos();
+                    break;
+                case 4:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     System.exit(0);
                     break;
                 default:
                     break;
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
     }
 }

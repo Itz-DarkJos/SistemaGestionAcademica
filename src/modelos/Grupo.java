@@ -11,6 +11,7 @@ public class Grupo implements Serializable {
     private String horario;
     private boolean esPlanA; // Para distinguir Plan A/B
     private static final long serialVersionUID = 1L;
+    private int cuatrimestre; 
 
     // Constructor básico
     public Grupo(String idGrupo, boolean esPlanA) {
@@ -20,6 +21,7 @@ public class Grupo implements Serializable {
         this.profesor = null;
         this.horario = "";
     }
+    
 
     // Getters
     public String getIdGrupo() { return idGrupo; }
@@ -27,6 +29,7 @@ public class Grupo implements Serializable {
     public Profesor getProfesor() { return profesor; }
     public String getHorario() { return horario; }
     public boolean esPlanA() { return esPlanA; }
+    public int getCuatrimestre() { return cuatrimestre; }
 
     // Setters
     public void setIdGrupo(String idGrupo) { this.idGrupo = idGrupo; }
